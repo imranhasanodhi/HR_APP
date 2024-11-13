@@ -2,6 +2,7 @@ import { useState } from "react";
 import EmployeeList from "./components/EmployeeList/EmployeeList.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import Header from "./components/Header/Header.jsx";
+import Button from "./components/Button/Button.jsx"; // Import the Button component
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false); // Default login state is false
@@ -19,13 +20,13 @@ function App() {
             // Show login button and message if not logged in
             <div>
               <p>Please log in to see the employee list.</p>
-              <button onClick={handleLogin}>Log In</button>
+              <Button onClick={handleLogin} text="Log In" role="primary" /> {/* Use Button component */}
             </div>
           ) : (
             // Display employee list once logged in
             <div>
-            <EmployeeList />
-            <button onClick={handleLogin}>Log Out</button>
+              <EmployeeList />
+              <Button onClick={handleLogin} text="Log Out" role="secondary" /> {/* Use Button component */}
             </div>
           )}
         </main>

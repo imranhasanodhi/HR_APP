@@ -1,82 +1,96 @@
 import { useState } from "react";
+import Button from "../Button/Button";
+import { createReminder, getDepartmentClass } from "../../utilis/styleUtils"; // Utility functions
+import { calculateYearsWorked } from "../../utilis/yearCalc"; // Utility function
 import './EmployeeCard.css';
 
-const EmployeeCard = (props) => {
-    const [role, setRole] = useState(props.initRole);
+const EmployeeCard = ({ name, initRole, initDepartment, location, startDate }) => {
+  const [role, setRole] = useState(initRole);
+  const [department, setDepartment] = useState(initDepartment);
+  const [locationState, setLocation] = useState(location); // State for location
+  const [isEditing, setIsEditing] = useState(false); // New state to track edit mode
 
-    // Calculate the years worked
-    const currentDate = new Date();
-    const startDate = new Date(props.startDate);
-    
-    // Calculate full years worked
-    let yearsWorked = currentDate.getFullYear() - startDate.getFullYear();
-    const monthDiff = currentDate.getMonth() - startDate.getMonth();
-    if (monthDiff < 0 || (monthDiff === 0 && currentDate.getDate() < startDate.getDate())) {
-        yearsWorked--; // Subtract a year if the current date hasn't reached the start date yet this year
-    }
+  const yearsWorked = calculateYearsWorked(startDate);
 
-    const clickHandler = () => {
-        if (role === "Team Lead") {
-            setRole(props.initRole); // Demote to original role
-        } else {
-            setRole("Team Lead"); // Promote to Team Lead
-        }
-    };
-
-    let buttonText;
-    let starIcon = null;
-
-    // Use if-else for button text and star icon rendering
+  const clickHandler = () => {
     if (role === "Team Lead") {
-        buttonText = "Demote from Team Lead";
-        starIcon = <span>⭐</span>; // Show star when promoted
+      setRole(initRole); // Demote to original role
     } else {
-        buttonText = "Promote to Team Lead";
-        starIcon = null; // No star if not promoted
+      setRole("Team Lead"); // Promote to Team Lead
     }
+  };
 
-    // Reminders based on years worked
-    let anniversaryReminder = null;
-    let probationReminder = null;
+  const toggleEdit = () => {
+    setIsEditing((prev) => !prev); // Toggle edit mode
+  };
 
-    // Anniversary reminder for multiples of 5 years (5, 10, 15, etc.)
-    if (yearsWorked >= 5 && yearsWorked % 5 === 0) {
-        anniversaryReminder = (
-            <div className="reminder">
-                <span>🎉</span> Schedule recognition meeting!
-            </div>
-        );
-    }
+  const handleSave = () => {
+    setIsEditing(false); // Save changes and exit edit mode
+  };
 
-    // Probation reminder for less than 6 months (less than 0.5 years)
-    if (yearsWorked < 0.5) {
-        probationReminder = (
-            <div className="reminder">
-                <span>⚠️</span> Schedule probation review!
-            </div>
-        );
-    }
+  // Anniversary and probation reminders
+  const anniversaryReminder = yearsWorked >= 5 && yearsWorked % 5 === 0
+    ? createReminder("🎉", "Schedule recognition meeting!")
+    : null;
 
-    return (
-        <div className="card">
-            <p>Name: {props.name}</p>
-            <p>Role: {role}</p>
-            <p>Department: {props.department}</p>
-            <p>Years Worked: {yearsWorked}</p> {/* Display years worked */}
+  const probationReminder = yearsWorked < 0.5
+    ? createReminder("⚠️", "Schedule probation review!")
+    : null;
 
-            {/* Display the anniversary reminder */}
-            {anniversaryReminder}
+  const departmentClass = getDepartmentClass(department);
 
-            {/* Display the probation reminder */}
-            {probationReminder}
+  return (
+    <div className={`card ${departmentClass} ${isEditing ? 'editing' : ''}`}>
+      <p>Name: {name}</p>
 
-            {/* Render the star icon conditionally */}
-            {starIcon}
+      {/* Render input field for role if in edit mode */}
+      {isEditing ? (
+        <input
+          type="text"
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+        />
+      ) : (
+        <p>Role: {role}</p>
+      )}
 
-            {/* Button with conditional text */}
-            <button onClick={clickHandler}>{buttonText}</button>
-        </div>
-    );
+      {/* Render input field for department if in edit mode */}
+      {isEditing ? (
+        <input
+          type="text"
+          value={department}
+          onChange={(e) => setDepartment(e.target.value)}
+        />
+      ) : (
+        <p>Department: {department}</p>
+      )}
+
+      {/* Render input field for location if in edit mode */}
+      {isEditing ? (
+        <input
+          type="text"
+          value={locationState}
+          onChange={(e) => setLocation(e.target.value)}
+        />
+      ) : (
+        <p>Location: {locationState}</p>
+      )}
+
+      <p>Years Worked: {yearsWorked}</p>
+      
+      {anniversaryReminder}
+      {probationReminder}
+
+      <Button onClick={clickHandler} text={role === "Team Lead" ? "Demote from Team Lead" : "Promote to Team Lead"} role="primary" />
+      
+      {/* Toggle between Edit and Save button */}
+      <Button 
+        onClick={isEditing ? handleSave : toggleEdit} 
+        text={isEditing ? "Save" : "Edit"} 
+        role="secondary" 
+      />
+    </div>
+  );
 };
 
 export default EmployeeCard;
