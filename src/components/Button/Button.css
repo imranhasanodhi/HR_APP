@@ -1,0 +1,62 @@
+.btn {
+  transition: all 0.25s;
+  box-shadow: none;
+  font-weight: 500;
+  font-family: inherit;
+  font-size: 0.8rem;
+  background-color: transparent;
+  cursor: pointer;
+  color: #005872;
+  padding: 0.3rem 1rem;
+  height: 2rem;
+  border-radius: 8px;
+  border:none;
+}
+
+.btn.primary:hover {
+  border-color: #0095c3;
+  background-color: #0095c3;
+  color: #f9f9f9;
+}
+
+.btn:focus,
+.btn:focus-visible {
+  outline: 4px auto #0095c3 none;
+}
+
+.btn.primary {
+  border: 1px solid #005872;
+}
+
+.btn.btn.primary-bg {
+  background-color: #fff;
+  margin: 1rem 0 0 0;
+  margin-right: 1rem;
+}
+
+.btn.btn.primary-bg:hover {
+  background-color: #0095c3;
+  color:white
+}
+
+.btn.secondary {
+  border: none;
+  padding: 0.3rem 0.8rem 0 0;
+}
+
+.btn.menu {
+  border: none;
+  background-color: #fff;
+  padding: 0.3rem 0.8rem;
+  width: 75px;
+}
+
+.btn.secondary:hover {
+text-decoration: underline;
+}
+
+@media (prefers-color-scheme: light) {
+  button {
+    background-color: #f9f9f9;
+  }
+}

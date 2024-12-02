@@ -1,0 +1,21 @@
+main {
+  min-height: calc(100vh - 180px);
+  padding:2rem;
+  display: flex;
+      justify-content: center;
+}
+
+main p {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+h2{
+  margin-bottom: 2rem;
+}
+
+label {
+  display: block;
+  font-size: 0.8rem;
+  color: #e7e7e7;
+}
