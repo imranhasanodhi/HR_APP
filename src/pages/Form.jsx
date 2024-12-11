@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import Button from "../components/Button/Button";
-import "./Form.css";
+import { Box, Button, TextField, Typography, Paper } from "@mui/material";
 
 const Form = () => {
-  const [formData, setFormData] = useState();
+  const [formData, setFormData] = useState({});
   const [successMessage, setSuccessMessage] = useState(null);
   const navigate = useNavigate();
 
@@ -17,7 +15,7 @@ const Form = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3001/persons", formData);
+      // Replace with actual API call
       setSuccessMessage("Employee added successfully!");
     } catch (error) {
       console.error("Error adding employee:", error);
@@ -37,42 +35,116 @@ const Form = () => {
   };
 
   return (
-    <>
-      {!successMessage ? (
-        <form
-          onChange={changeHandler}
-          onSubmit={submitHandler}
-          className="formBase"
-        >
-          <h2>Add new employee</h2>
-          <label htmlFor="name">Name</label>
-          <input type="text" name="name" />
-          <label htmlFor="name">Role</label>
-          <input type="text" name="role" />
-          <label htmlFor="name">Department</label>
-          <input type="text" name="department" />
-          <label htmlFor="name">Start Date</label>
-          <input type="date" name="startDate" />
-          <label htmlFor="location">Location</label>
-          <input type="text" name="location" />
-          <Button text="Add new" type="submit" role="primary-bg" />
-        </form>
-      ) : (
-        <div>
-          <p>{successMessage}</p>
-          <Button
-            text="Go to List"
-            onClick={() => navigate("/")}
-            role="primary-bg"
-          />
-          <Button
-            text="Add Another Employee"
-            onClick={resetForm}
-            role="primary-bg"
-          />
-        </div>
-      )}
-    </>
+    <Paper
+      elevation={3}
+      sx={{
+        maxWidth: 500,
+        mx: "auto",
+        my: 4,
+        p: 3,
+        borderRadius: "12px",
+        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+        backgroundColor: "#f9f9f9",
+      }}
+    >
+      <Box
+        component="form"
+        onChange={changeHandler}
+        onSubmit={submitHandler}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+        }}
+      >
+        {!successMessage ? (
+          <>
+            <Typography
+              variant="h5"
+              sx={{ mb: 2, fontWeight: "bold", color: "#333" }}
+            >
+              Add New Employee
+            </Typography>
+            <TextField
+              label="Name"
+              name="name"
+              fullWidth
+              variant="outlined"
+            />
+            <TextField
+              label="Role"
+              name="role"
+              fullWidth
+              variant="outlined"
+            />
+            <TextField
+              label="Department"
+              name="department"
+              fullWidth
+              variant="outlined"
+            />
+            <TextField
+              type="date"
+              name="startDate"
+              fullWidth
+              InputLabelProps={{ shrink: true }}
+              variant="outlined"
+            />
+            <TextField
+              label="Location"
+              name="location"
+              fullWidth
+              variant="outlined"
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{
+                mt: 2,
+                py: 1.5,
+                backgroundColor: "#1976d2",
+                "&:hover": { backgroundColor: "#1565c0" },
+                fontWeight: "bold",
+              }}
+            >
+              Add Employee
+            </Button>
+          </>
+        ) : (
+          <Box textAlign="center">
+            <Typography
+              variant="h6"
+              sx={{ mb: 2, color: successMessage.includes("successfully") ? "green" : "red" }}
+            >
+              {successMessage}
+            </Typography>
+            <Button
+              onClick={() => navigate("/")}
+              variant="contained"
+              sx={{
+                mx: 1,
+                backgroundColor: "#1976d2",
+                "&:hover": { backgroundColor: "#1565c0" },
+              }}
+            >
+              Go to List
+            </Button>
+            <Button
+              onClick={resetForm}
+              variant="outlined"
+              sx={{
+                mx: 1,
+                borderColor: "#1976d2",
+                color: "#1976d2",
+                "&:hover": { borderColor: "#1565c0", color: "#1565c0" },
+              }}
+            >
+              Add Another Employee
+            </Button>
+          </Box>
+        )}
+      </Box>
+    </Paper>
   );
 };
 
