@@ -1,6 +1,6 @@
 # Week 5
 
-## Step 1
+## Step 1.
 1. Install `json-server` to create a mock backend:  
 2. Create a `db.json` file and move the `personData` content into this file under a `persons` key.
 
