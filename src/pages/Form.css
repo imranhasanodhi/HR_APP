@@ -1,8 +1,38 @@
+/* Form overall */
 form {
-width: 300px;}
-
-.formBase input {width: 300px;
-padding:0.3rem;
-font-size: inherit;
-font-family: inherit;
-margin: 0 0 1rem;}
+    width: 100%; /* Ensure it takes full width by default */
+    max-width: 300px; /* Limit width to 300px for better layout control */
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Form Base */
+  .formBase {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .formBase label {
+    margin: 0 0 0.5rem; /* Margin below label for spacing */
+    color: #333; /* Label color */
+    font-weight: bold; /* Makes the text stand out */
+  }
+  
+  .formBase input {
+    width: calc(100% - 1rem); /* Adjust width to account for padding */
+    padding: 0.5rem;
+    font-size: inherit;
+    font-family: inherit;
+    margin: 0 0 1rem; /* Margin between each input field */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+  }
+  
+  .formBase input:focus {
+    border-color: #005872; /* Accent color on focus */
+  }
+  

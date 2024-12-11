@@ -11,8 +11,8 @@ const Login = ({ loginHandler }) => {
   const checkCredentials = (e) => {
     e.preventDefault();
     if (
-      username.toLowerCase() === "margit" &&
-      password.toLowerCase() === "test"
+      username.toLowerCase() === "imran" &&
+      password.toLowerCase() === "1234"
     ) {
       loginHandler();
       navigate("/");
