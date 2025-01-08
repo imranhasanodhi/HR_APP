@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import './Header.css'
-const Header = () => {
-  return (
-    <header>
-      <h1>Employee dashboard</h1>
-    </header>
-=======
 import { AppBar, Toolbar, Typography, Button, Box, Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 
@@ -31,7 +23,6 @@ const Header = ({ isLoggedIn, loginHandler }) => {
         </Box>
       </Toolbar>
     </AppBar>
->>>>>>> week-6
   );
 };
 

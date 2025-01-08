@@ -1,21 +1,6 @@
-<<<<<<< HEAD
-.list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 1rem; /* Adjust the space between items */
-    margin-bottom: 1rem;
-}
-
-.list .card {
-    flex: 0 1 calc(20% - 1rem); /* Ensures each item takes up 20% of the width, minus the gap */
-    box-sizing: border-box; /* Ensures padding and margin don't affect item size */
-}
-=======
 .list{
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
     justify-content: center;
 }
->>>>>>> week-6

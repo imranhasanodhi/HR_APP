@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-# Employee Management System
-
-## Changes Made
-
-
-### 1. **Destructure props**
-
-### 2. **Add custom favicon**¨
-
-### 3. **Add Button stylling**
-
-### 4. **Edit Mode for Employee Card**
-   - **Edit functionality**: Added an "Edit" button to allow toggling between "Edit" and "Save" states for each employee card.
-   - **Conditional Rendering**: When the "Edit" button is clicked, input fields are rendered for `role`, `department`, and `location`, allowing users to update those fields.
-
-
-
-=======
 # Week 5
 
 ## Step 1
@@ -38,4 +19,3 @@
 1. Add a "See More" button on each employee card to navigate to a detailed view page.  
 2. Adjust the employee card to show only basic details, with full details displayed on the detailed view page.  
 3. Include a "Back to List" button on the detailed view page to return to the employees list.
->>>>>>> week-6
