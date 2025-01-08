@@ -8,13 +8,23 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+<<<<<<< HEAD
 
+=======
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+>>>>>>> week-6
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+<<<<<<< HEAD
 a {
   font-weight: 500;
   color: #ffa764;
@@ -30,12 +40,16 @@ body {
   padding: 2rem;
   display: flex;
   place-items: center;
+=======
+body {
+>>>>>>> week-6
   min-width: 320px;
   min-height: 100vh;
 }
 
 h1 {
   font-size: 3.2em;
+<<<<<<< HEAD
   line-height: 1.1;
 }
 
@@ -56,15 +70,35 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+=======
+}
+
+a {
+  font-weight: 500;
+  color: #005872;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #0095c3;
+>>>>>>> week-6
 }
 
 @media (prefers-color-scheme: light) {
   :root {
+<<<<<<< HEAD
     color: #ffa764;
     background-color: #ffffff;
   }
   a:hover {
     color: #f2da53;
+=======
+    color: #0095c3;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #005872;
+>>>>>>> week-6
   }
   button {
     background-color: #f9f9f9;
