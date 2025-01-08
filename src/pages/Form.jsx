@@ -1,9 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, TextField, Typography, Paper } from "@mui/material";
+import axios from "axios";
 
 const Form = () => {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    name: "",
+    role: "",
+    department: "",
+    startDate: "",
+    location: "",
+  });
   const [successMessage, setSuccessMessage] = useState(null);
   const navigate = useNavigate();
 
@@ -15,7 +22,7 @@ const Form = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      // Replace with actual API call
+      await axios.post("http://localhost:3001/persons", formData); // Add employee to backend
       setSuccessMessage("Employee added successfully!");
     } catch (error) {
       console.error("Error adding employee:", error);
@@ -49,7 +56,6 @@ const Form = () => {
     >
       <Box
         component="form"
-        onChange={changeHandler}
         onSubmit={submitHandler}
         sx={{
           display: "flex",
@@ -68,24 +74,32 @@ const Form = () => {
             <TextField
               label="Name"
               name="name"
+              value={formData.name}
+              onChange={changeHandler}
               fullWidth
               variant="outlined"
             />
             <TextField
               label="Role"
               name="role"
+              value={formData.role}
+              onChange={changeHandler}
               fullWidth
               variant="outlined"
             />
             <TextField
               label="Department"
               name="department"
+              value={formData.department}
+              onChange={changeHandler}
               fullWidth
               variant="outlined"
             />
             <TextField
               type="date"
               name="startDate"
+              value={formData.startDate}
+              onChange={changeHandler}
               fullWidth
               InputLabelProps={{ shrink: true }}
               variant="outlined"
@@ -93,6 +107,8 @@ const Form = () => {
             <TextField
               label="Location"
               name="location"
+              value={formData.location}
+              onChange={changeHandler}
               fullWidth
               variant="outlined"
             />
@@ -114,7 +130,10 @@ const Form = () => {
           <Box textAlign="center">
             <Typography
               variant="h6"
-              sx={{ mb: 2, color: successMessage.includes("successfully") ? "green" : "red" }}
+              sx={{
+                mb: 2,
+                color: successMessage.includes("successfully") ? "green" : "red",
+              }}
             >
               {successMessage}
             </Typography>

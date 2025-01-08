@@ -8,20 +8,20 @@ const EmployeeList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const fetchEmployees = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/persons");
+      setEmployees(response.data); // Set fetched employees
+    } catch (err) {
+      setError("Failed to fetch employees");
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchEmployees = async () => {
-      try {
-        setIsLoading(true);
-        const response = await axios.get("http://localhost:3001/persons");
-        setEmployees(response.data);
-      } catch (err) {
-        setError("Failed to fetch employees");
-        console.error(err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchEmployees();
+    fetchEmployees(); // Fetch employees on component mount
   }, []);
 
   if (isLoading) return <p>Loading...</p>;
@@ -29,9 +29,9 @@ const EmployeeList = () => {
 
   return (
     <div className="list">
-      {employees.map((employee) => {
-        return <EmployeeCard key={employee.id} {...employee} />;
-      })}
+      {employees.map((employee) => (
+        <EmployeeCard key={employee.id} {...employee} />
+      ))}
     </div>
   );
 };
