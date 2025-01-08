@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview", 
     "server": "json-server --watch src/data/db.json --port 3001",
-    "start": "concurrently \"vite preview --port 3000\" \"json-server --watch src/data/db.json --port 3001\""
+    "start": "concurrently \"vite preview --port $PORT\" \"json-server --watch src/data/db.json --port 3001\""
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
