@@ -4,17 +4,17 @@ FROM node:18
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json (or yarn.lock)
+# Copy package.json and package-lock.json (or yarn.lock) for the backend and frontend
 COPY package*.json ./
 
-# Install dependencies
+# Install dependencies for both backend and frontend
 RUN npm install
 
-# Copy the rest of the application files
+# Copy the entire app (frontend + backend) to the container
 COPY . .
 
-# Expose the port the app will run on
-EXPOSE 3000
+# Expose the ports for both frontend and backend
+EXPOSE 3000 3001
 
-# Define the command to run your application
+# Define the command to run both frontend (vite) and backend (json-server)
 CMD ["npm", "run", "start"]
